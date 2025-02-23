@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bedwars-challenge-utils",
+  "name": "Bedwars Challenge Utils",
+  "description": "Just a little mods to help you with various bedwars challenge on hypixel",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["furiousfurie"],
+  "credits": "GalaxyMiller for the idea",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
