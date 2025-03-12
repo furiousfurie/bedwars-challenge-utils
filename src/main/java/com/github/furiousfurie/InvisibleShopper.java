@@ -3,41 +3,41 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import scala.Int;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
+import java.util.Scanner;
 
 
 public class InvisibleShopper {
-    EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-    String Regex = "[0-120]";
-    Pattern pattern = Pattern.compile(Regex);
-    Map<String, Integer> iron_item_list = new HashMap<String, Integer>() {{
-        put("wool",4);
-        put("clay",12);
-        put("glass",12);
-        put("endstone",24);
-        put("stone sword",10);
-        put("chain armor",24);
-        put("shears",20);
-        put("axe",10);
-        put("pickaxe",10);
-        put("bedbug",24);
-        put("dream_defenders",120);
-        put("fireball",40);
-        put("pop-up_tower",24);
-
+    EntityPlayer player = Minecraft.getMinecraft().thePlayer;;
+    Map<Integer, String> iron_item_list = new HashMap<Integer, String>() {{
+        put(4,"wool");
+        put(12, "clay/glass");
+        put(24, "endstone/chain armor/bedbug/pop-up_tower\"");
+        put(20, "shears");
+        put(10, "axe/pickaxe/stone sword");
+        put(120, "dream_defenders");
+        put(40, "fireball");
     }};
-
 
     @SubscribeEvent()
     public void chat_recevied_event(ServerChatEvent event){
+        String str = String.valueOf(event);
 
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Use regex to remove all non-numeric characters
+        String numbersOnly = str.replaceAll("[^0-9]", "");
+
+        scanner.close();
+
+        Integer result = Integer.valueOf(numbersOnly);
+        if(iron_item_list.containsKey(result)){
+            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(iron_item_list.get(result)));
+        }
     }
 }
 
