@@ -23,7 +23,7 @@ public class InvisibleShopper {
     }};
 
     @SubscribeEvent()
-    public void chat_receveid_event(ServerChatEvent event){
+    public void chat_received_event(ServerChatEvent event){
         String str = String.valueOf(event);
 
         Scanner scanner = new Scanner(System.in);
