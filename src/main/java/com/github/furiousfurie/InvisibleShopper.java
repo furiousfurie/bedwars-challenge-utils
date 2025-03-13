@@ -23,11 +23,10 @@ public class InvisibleShopper {
     }};
 
     @SubscribeEvent()
-    public void chat_received_event(ServerChatEvent event){
-        String str = String.valueOf(event);
-
+    public void chat_receveid_event(ServerChatEvent event){
+        String str = String.valueOf(event.message);
+        System.out.println(str);
         Scanner scanner = new Scanner(System.in);
-
 
         // Use regex to remove all non-numeric characters
         String numbersOnly = str.replaceAll("[^0-9]", "");
@@ -35,8 +34,11 @@ public class InvisibleShopper {
         scanner.close();
 
         Integer result = Integer.valueOf(numbersOnly);
+        System.out.println(numbersOnly);
+        System.out.println(result);
         if(iron_item_list.containsKey(result)){
             Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(iron_item_list.get(result)));
+            System.out.println(iron_item_list.get(result));
         }
     }
 }
