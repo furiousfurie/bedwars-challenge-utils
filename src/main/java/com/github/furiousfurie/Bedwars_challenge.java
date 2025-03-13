@@ -22,7 +22,7 @@ public class Bedwars_challenge {
     @EventHandler
     public void init(FMLInitializationEvent event){
         MinecraftForge.EVENT_BUS.register(new InvisibleShopper());
-        System.out.println("Bedwars challenge utils initialization finished");
+        System.out.println("Bedwars challenge utils initialization begun");
     }
 }
 
