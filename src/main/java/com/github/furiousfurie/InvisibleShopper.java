@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class InvisibleShopper {
     EntityPlayer player = Minecraft.getMinecraft().thePlayer;;
-    Map<Integer, String> iron_item_list = new HashMap<Integer, ArrayList<String>>() {{
+    Map<Integer, ArrayList<String>> iron_item_list = new HashMap<Integer, ArrayList<String>>() {{
         put(4, new ArrayList<String>() {{
             add("WOOL");
             add("LADDER");
@@ -45,7 +45,7 @@ public class InvisibleShopper {
     }};
 
     @SubscribeEvent()
-    public void chat_receveid_event(ServerChatEvent event){
+    public void chat_received_event(ServerChatEvent event){
         String str = String.valueOf(event.message);
         System.out.println(str);
         Scanner scanner = new Scanner(System.in);
