@@ -22,3 +22,4 @@ eclipse
 run
 .vscode
 .editorconfig
+.DS_Store
