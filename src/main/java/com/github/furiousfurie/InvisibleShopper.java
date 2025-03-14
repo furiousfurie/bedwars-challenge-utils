@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class InvisibleShopper {
     EntityPlayer player = Minecraft.getMinecraft().thePlayer;;
-    Map<Integer, ArrayList<String>> iron_item_list = new HashMap<Integer, ArrayList<String>>() {{
+    Map<Integer, ArrayList<String>> iron_items = new HashMap<Integer, ArrayList<String>>() {{
         put(4, new ArrayList<String>() {{
             add("WOOL");
             add("LADDER");
@@ -46,21 +46,14 @@ public class InvisibleShopper {
 
     @SubscribeEvent()
     public void chat_received_event(ServerChatEvent event){
-        String str = String.valueOf(event.message);
-        System.out.println(str);
         Scanner scanner = new Scanner(System.in);
-
-        // Use regex to remove all non-numeric characters
-        String numbersOnly = str.replaceAll("[^0-9]", "");
-
+        String msgNumbers = event.message.replaceAll("[^0-9]", ""); // Use regex to remove all non-numeric characters
         scanner.close();
 
-        Integer result = Integer.valueOf(numbersOnly);
-        System.out.println(numbersOnly);
-        System.out.println(result);
-        if(iron_item_list.containsKey(result)){
-            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(iron_item_list.get(result)));
-            System.out.println(iron_item_list.get(result));
+        Integer price = Integer.valueOf(msgNumbers);
+        System.out.println(price);
+        if(iron_items.containsKey(price)){
+            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price))));
         }
     }
 }
