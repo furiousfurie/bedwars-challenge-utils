@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 
 public class InvisibleShopper {
-    EntityPlayer player = Minecraft.getMinecraft().thePlayer;;
+    EntityPlayer player = Minecraft.getMinecraft().thePlayer;
     Map<Integer, ArrayList<String>> iron_items = new HashMap<Integer, ArrayList<String>>() {{
         put(4, new ArrayList<String>() {{
             add("WOOL");
