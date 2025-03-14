@@ -44,6 +44,51 @@ public class InvisibleShopper {
         }});
     }};
 
+
+    Map<Integer, ArrayList<String>> gold_items = new HashMap<Integer, ArrayList<String>>(){{
+        put(2, new ArrayList<String>() {{
+            add("ARROW");
+        }});
+        put(3, new ArrayList<String>(){{
+           add("GOLDEN_APPLE");
+        }});
+        put(4, new ArrayList<String>(){{
+            add("WOOD");
+        }});
+        put(6, new ArrayList<String>(){{
+            add("WATER_BUCKET");
+            add("SPONGE");
+        }});
+        put(8, new ArrayList<String>(){{
+            add("TNT");
+        }});
+        put(5, new ArrayList<String>(){{
+            add("KNOCKBACK_STICK");
+        }});
+        put(7, new ArrayList<String>(){{
+            add("IRON_SWORD");
+        }});
+        put(12, new ArrayList<String>(){{
+            add("IRON_ARMOR");
+            add("BOW");
+        }});
+        put(20, new ArrayList<String>(){{
+            add("POWER_BOW");
+        }});
+    }};
+
+
+
+
+
+
+
+
+
+
+
+
+
     @SubscribeEvent()
     public void chat_received_event(ServerChatEvent event){
         Scanner scanner = new Scanner(System.in);
@@ -53,7 +98,13 @@ public class InvisibleShopper {
         Integer price = Integer.valueOf(msgNumbers);
         System.out.println(price);
         if(iron_items.containsKey(price)){
-            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price))));
+            if(gold_items.containsKey(price)){
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price)) + String.join(", ", gold_items.get(price))));
+            }else {
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price))));
+            }
+        } else if (gold_items.containsKey(price)) {
+            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", gold_items.get(price))));
         }
     }
 }
