@@ -1,17 +1,9 @@
 package com.github.furiousfurie;
 
-import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import com.github.furiousfurie.InvisibleShopper.*;
-
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-
 
 @Mod(modid = Challenge_Utils.MODID, version = Challenge_Utils.VERSION, modLanguage = "java")
 public class Challenge_Utils {
