@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.*;
 
 import org.lwjgl.input.Mouse;
 
@@ -91,18 +92,20 @@ public class InvisibleShopper {
         String msgNumbers = event.message.replaceAll("[^0-9]", ""); // Use regex to remove all non-numeric characters
         scanner.close();
 
+        Pattern pattern = Pattern.compile("\\b(iron|gold|emerald)\\b", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(event.message);
+        if (!matcher.find()) {return;}
+        String material = matcher.group();
+        Map<Integer, ArrayList<String>> materialMap;
+        if (material.equals("iron")) {materialMap = iron_items;}
+        else if (material.equals("gold")) {materialMap = gold_items;}
+        else {return;}
+        //TODO: galaxymiller: Add emeralds material map
         Integer price = Integer.valueOf(msgNumbers);
+
         System.out.println(price);
-        if (iron_items.containsKey(price)) {
-            if (gold_items.containsKey(price)) {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price)) + String.join(", ", gold_items.get(price))));
-            }
-            else {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", iron_items.get(price))));
-            }
-        }
-        else if (gold_items.containsKey(price)) {
-            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", gold_items.get(price))));
+        if (materialMap.containsKey(price)) {
+            Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(String.join(", ", materialMap.get(price))));
         }
     }
 
